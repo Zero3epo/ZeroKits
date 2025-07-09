@@ -23,7 +23,7 @@ public class kits implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String s, String[] args) {
 
-        //получение текста из кфг//получение текста из кфг//получение текста из кфг//
+        //получение текста из кфг//получение текста из кфг//получение текста из кфг///
         String err_open = plugin.getConfig().getString("err_open");
         if(err_open == null) return false;
         err_open = ChatColor.translateAlternateColorCodes('&', err_open);
