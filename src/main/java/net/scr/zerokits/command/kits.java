@@ -1,6 +1,8 @@
 package net.scr.zerokits.command;
 
 import net.scr.zerokits.ZeroKits;
+import net.scr.zerokits.items.AdKits;
+import net.scr.zerokits.items.InventoryManager;
 import net.scr.zerokits.items.MenuItems;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -12,12 +14,18 @@ import org.bukkit.inventory.Inventory;
 
 public class kits implements CommandExecutor {
 
+    public static int currentMenu = 0; // 0 - Adekt, 1 - PM, 2 - Pizdec
+
     private final ZeroKits plugin;
     private final MenuItems menuItems;
+    private final AdKits adKits;
+    private final InventoryManager inventoryManager;
 
     public kits(ZeroKits plugin) {
         this.plugin = plugin;
-        this.menuItems = plugin.getMenuItems(); // Получаем доступ к MenuItems
+        this.menuItems = plugin.getMenuItems();
+        this.adKits = plugin.getAdItems();
+        this.inventoryManager = plugin.getInventoryManager();
     }
 
     @Override
@@ -36,8 +44,10 @@ public class kits implements CommandExecutor {
             return true;
         }
         Player p = (Player) sender;
-
+        currentMenu = 0;
         Inventory inv = Bukkit.createInventory(p, 54, "ZeroKits");
+
+        inventoryManager.setPlayerInventory(p, inv);
 
         for(int i = 0; i <= 8; i++ ) {
             inv.setItem(i, menuItems.getPanel());
@@ -61,6 +71,17 @@ public class kits implements CommandExecutor {
                     break;
             }
         }
+
+        inv.setItem(20, adKits.getAnchorKit());
+        inv.setItem(21, adKits.getAppleKit());
+        inv.setItem(22, adKits.getNetherKit());
+        inv.setItem(23, adKits.getTotemKit());
+        inv.setItem(24, adKits.getEnderKit());
+        inv.setItem(29, adKits.getElytraKit());
+        inv.setItem(30, adKits.getShieldKit());
+        inv.setItem(31, adKits.getCrystalKit());
+        inv.setItem(32 , adKits.getUHCKit());
+        inv.setItem(33 , adKits.getDiamondKit());
 
         p.openInventory(inv);
 

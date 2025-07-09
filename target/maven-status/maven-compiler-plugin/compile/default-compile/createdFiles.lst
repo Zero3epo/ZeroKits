@@ -2,4 +2,6 @@ net\scr\zerokits\items\MenuItems.class
 net\scr\zerokits\Listener\ClickKit.class
 net\scr\zerokits\command\kits.class
 net\scr\zerokits\Listener\ClickButton.class
+net\scr\zerokits\items\AdKits.class
+net\scr\zerokits\items\InventoryManager.class
 net\scr\zerokits\ZeroKits.class
