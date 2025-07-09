@@ -1,0 +1,11 @@
+err_open: "&4Данное меню могут открывать только игроки" #message for console
+
+
+#name menu
+Adkit: "&aАдекватные киты"
+PMkit: "&eМенее адекватные киты"
+PizdecKit: "&cНу тут вообще пиздец"
+
+#other
+select_false: "&cВы уже находитесь в выбранном меню"
+select_menu: "&aВы выбрали %BTN_Menu%"

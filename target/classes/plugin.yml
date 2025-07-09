@@ -1,0 +1,7 @@
+name: ZeroKits
+version: '1.0-SNAPSHOT'
+main: net.scr.zerokits.ZeroKits
+api-version: '1.16'
+commands:
+  Zkit:
+    description: open menu kits
