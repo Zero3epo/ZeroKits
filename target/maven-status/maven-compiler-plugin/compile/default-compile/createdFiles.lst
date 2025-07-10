@@ -1,4 +1,5 @@
 net\scr\zerokits\items\MenuItems.class
+net\scr\zerokits\queue\inqueue.class
 net\scr\zerokits\Listener\ClickKit.class
 net\scr\zerokits\command\kits.class
 net\scr\zerokits\Listener\ClickButton.class

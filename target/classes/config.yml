@@ -1,5 +1,5 @@
 err_open: "&4Данное меню могут открывать только игроки" #message for console
-
+start_fight: "&fВы начали поединок с &e%player% &f(&6%kit%&f)"
 
 #name menu
 Adkit: "&aАдекватные киты"
