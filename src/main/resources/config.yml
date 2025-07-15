@@ -1,5 +1,9 @@
 err_open: "&4Данное меню могут открывать только игроки" #message for console
 start_fight: "&fВы начали поединок с &e%player% &f(&6%kit%&f)"
+quantity_arenas: 20 #max 20
+#if you want more arenas,
+#you can just add them to the cfg,
+#you only need to copy the old structure
 
 #name menu
 Adkit: "&aАдекватные киты"
@@ -84,3 +88,45 @@ trolley_tnt:
 
   #не адекватные
 
+coordinate:
+  arena_1:
+    players: false
+    player1_coordinates:
+      - 316 #x
+      - 64  #y
+      - 327 #z
+    player2_coordinates:
+      - 294 #x (пример: +34 по X)
+      - 64  #y
+      - 327 #z
+  arena_2:
+    players: false
+    player1_coordinates:
+      - 100 #x
+      - 0   #y
+      - 51  #z
+    player2_coordinates:
+      - 150 #x (+50)
+      - 0   #y
+      - 51  #z
+  arena_3:
+    players: false
+    player1_coordinates:
+      - 100 #x
+      - 0   #y
+      - 51  #z
+    player2_coordinates:
+      - 150 #x (+50)
+      - 0   #y
+      - 51  #z
+  # ... (аналогично для остальных арен)
+  arena_20:
+    players: false
+    player1_coordinates:
+      - 100 #x
+      - 0   #y
+      - 51  #z
+    player2_coordinates:
+      - 150 #x (+50)
+      - 0   #y
+      - 51  #z

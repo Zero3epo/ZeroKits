@@ -5,6 +5,7 @@ import net.scr.zerokits.items.AdKits;
 import net.scr.zerokits.items.InventoryManager;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -24,8 +25,11 @@ public class ClickKit implements Listener {
     private final InventoryManager inventoryManager;
     private final AdKits adKits;
     private final HashMap<UUID, ItemStack> playerKits = new HashMap<>();
-
     private final HashMap<ItemStack, List<UUID>> kitPlayers = new HashMap<>();
+    static final HashMap<UUID, UUID> duelPlayers = new HashMap<>();
+    static final HashMap<UUID, Integer> playerArena = new HashMap<>();
+    static final HashMap<Integer, Boolean> arenasStatus = new HashMap<>();
+    private int arenas;
 
     public ClickKit(ZeroKits plugin) {
         this.plugin = plugin;
@@ -39,6 +43,9 @@ public class ClickKit implements Listener {
         Inventory inv = inventoryManager.getPlayerInventory(p);
         ItemStack clicked = e.getCurrentItem();
 
+        plugin.reloadConfig();
+
+        arenas = plugin.getConfig().getInt("quantity_arenas");
         String start = plugin.getConfig().getString("start_fight");
 
         // Базовые проверки
@@ -158,9 +165,28 @@ public class ClickKit implements Listener {
                 p1.getInventory().clear();
                 p2.getInventory().clear();
 
-
-
-
+                for(int i = 1; i <= arenas; i++) {
+                    String path = "coordinate.arena_" + i + ".players";
+                    boolean pBool =  plugin.getConfig().getBoolean(path);
+                    if(!pBool) {
+                        List<Integer> p1Coords =  plugin.getConfig().getIntegerList("coordinate.arena_"+ i +".player1_coordinates");
+                        List<Integer> p2Coords =  plugin.getConfig().getIntegerList("coordinate.arena_"+ i +".player2_coordinates");
+                        Location p1L = new Location(Bukkit.getWorld("world"), p1Coords.get(0), p1Coords.get(1), p1Coords.get(2));
+                        Location p2L = new Location(Bukkit.getWorld("world"), p2Coords.get(0), p2Coords.get(1), p2Coords.get(2));
+                        p1.teleport(p1L);
+                        p2.teleport(p2L);
+                        plugin.getConfig().set(path, true);
+                        plugin.saveConfig();
+                        duelPlayers.put(p1.getUniqueId(), p2.getUniqueId());
+                        duelPlayers.put(p2.getUniqueId(), p1.getUniqueId());
+                        playerArena.put(p1.getUniqueId(), i);
+                        playerArena.put(p2.getUniqueId(), i);
+                        arenasStatus.put(i, true);
+                        Bukkit.getLogger().info(ChatColor.YELLOW + "Была запущена дуэль: "
+                                + ChatColor.AQUA + "Арена: " + i + ChatColor.RED + ", Игроки: " + p1.getName() + ", " + p2.getName());
+                        break;
+                    }
+                }
             }
         }
     }

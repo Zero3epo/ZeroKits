@@ -1,5 +1,6 @@
 package net.scr.zerokits;
 
+import net.scr.zerokits.Listener.CheckDuels;
 import net.scr.zerokits.Listener.ClickButton;
 import net.scr.zerokits.Listener.ClickKit;
 import net.scr.zerokits.command.kits;
@@ -24,7 +25,7 @@ public final class ZeroKits extends JavaPlugin {
         getCommand("Zkit").setExecutor(new kits(this));
         getServer().getPluginManager().registerEvents(new ClickButton(this.getMenuItems(), this), this);
         getServer().getPluginManager().registerEvents(new ClickKit(this), this);
-
+        getServer().getPluginManager().registerEvents(new CheckDuels(this), this);
 
         saveDefaultConfig();
     }
